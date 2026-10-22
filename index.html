@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f5f6f2" />
+  <title>Daywell — a day with a little more shape</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="timer.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Daywell home"><span class="brand-mark">d</span><span>daywell</span></a>
+      <div class="side-label">YOUR SPACE</div>
+      <button class="nav-item active"><span class="nav-icon">▦</span> Daily plan</button>
+      <button class="nav-item" id="settings-nav"><span class="nav-icon">◷</span> Your rhythm</button>
+      <div class="sidebar-bottom">
+        <div class="quote-mark">“</div>
+        <p>Consistency is a kindness you do for your future self.</p>
+        <span>— a gentle reminder</span>
+      </div>
+      <div class="profile"><div class="avatar">M</div><div><strong>My workspace</strong><small>Just for you</small></div><span class="profile-dots">···</span></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><div class="breadcrumb">My space <span>/</span> <strong>Daily plan</strong></div><div class="today-pill"><span class="live-dot"></span> Your plan stays on this device</div></header>
+      <section class="welcome-row">
+        <div><div class="eyebrow" id="date-label">YOUR DAY, AT YOUR PACE</div><h1>A little more <em>intentional.</em></h1><p class="welcome-copy">Make room for what matters — and for being a person, too.</p></div>
+        <button class="button button-primary" id="build-plan"><span>✳</span> Build my day</button>
+      </section>
+
+      <section class="summary-grid" id="summary-grid">
+        <article class="summary-card"><span class="summary-icon purple">◷</span><div class="summary-label">FOCUS TIME</div><strong id="focus-total">—</strong><small>planned today</small></article>
+        <article class="summary-card"><span class="summary-icon peach">♡</span><div class="summary-label">ROOM TO BREATHE</div><strong id="leisure-total">—</strong><small>leisure + fun</small></article>
+        <article class="summary-card"><span class="summary-icon green">☾</span><div class="summary-label">SLEEP WINDOW</div><strong id="sleep-total">—</strong><small id="sleep-caption">protected rest</small></article>
+        <article class="summary-card progress-card"><div class="progress-head"><div><div class="summary-label">TODAY'S FLOW</div><strong id="flow-count">0 <span>of 0 slots</span></strong></div><span class="progress-percent" id="progress-percent">0%</span></div><div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div><small>Small steps count. Adjust as you go.</small></article>
+      </section>
+
+      <div class="section-heading"><div><h2>Your schedule</h2><p>A flexible plan, not a test you have to pass.</p></div><div class="heading-actions"><button class="button button-quiet" id="edit-availability">⌘ <span>Availability</span></button><button class="button button-quiet" id="edit-rhythm">⚙ <span>Preferences</span></button></div></div>
+      <div id="notice" class="notice hidden" role="status"></div>
+      <div class="workspace-grid">
+        <section class="timeline-card"><div class="timeline-head"><div><span class="tiny-eyebrow">TODAY</span><h3 id="timeline-date">Your plan</h3></div><button class="icon-button" id="clear-plan" title="Clear today's plan">↻</button></div><div id="timeline" class="timeline"><div class="empty-state"><div class="empty-art">✳</div><strong>Your day is still open</strong><p>Build a plan from your activities, or add availability first.</p><button class="button button-outline" id="empty-build">Build a gentle plan</button></div></div></section>
+        <aside class="right-column">
+          <section class="panel activity-panel"><div class="panel-heading"><div><span class="tiny-eyebrow">MAKE IT YOURS</span><h3>Activity types</h3></div><button class="add-button" id="add-activity" aria-label="Add activity">＋</button></div><p class="panel-copy">Set the kinds of sessions you want to make time for.</p><div id="activity-list" class="activity-list"></div></section>
+          <section class="panel availability-panel"><div class="panel-heading"><div><span class="tiny-eyebrow">YOUR DAY, YOUR RULES</span><h3>Free time windows</h3></div><button class="text-button" id="availability-link">Edit</button></div><p class="panel-copy">We’ll only place sessions when you say you’re free.</p><div id="availability-summary" class="availability-summary"></div></section>
+          <section class="tip-card"><div class="tip-icon">✦</div><div><strong>A plan can change.</strong><p>When your day shifts, update your free windows and rebuild. Your completed sessions stay checked off.</p></div></section>
+        </aside>
+      </div>
+      <footer class="footer-note">Made for your real day — including the parts that don’t go to plan.</footer>
+    </main>
+  </div>
+
+  <dialog id="activity-dialog" class="modal"><form id="activity-form" method="dialog"><div class="modal-top"><div><span class="tiny-eyebrow">YOUR ROUTINE</span><h2 id="activity-modal-title">Add an activity</h2></div><button type="button" class="modal-close" data-close>×</button></div><input type="hidden" id="activity-id"><label>Activity name<input id="activity-name" required maxlength="28" placeholder="e.g. Language practice"></label><label>Color<select id="activity-color"><option value="violet">Soft violet</option><option value="blue">Sky blue</option><option value="amber">Warm amber</option><option value="green">Sage green</option><option value="rose">Rose</option><option value="teal">Teal</option></select></label><div class="field-row"><label>Shortest slot (min)<input id="activity-min" type="number" min="15" max="300" step="5" required></label><label>Longest slot (min)<input id="activity-max" type="number" min="15" max="300" step="5" required></label></div><div class="field-row"><label>Minimum per day<input id="activity-count-min" type="number" min="0" max="12" required></label><label>Maximum per day<input id="activity-count-max" type="number" min="0" max="12" required></label></div><label class="check-label"><input type="checkbox" id="activity-enabled" checked> Include this activity in my plan</label><div class="modal-actions"><button type="button" class="button button-quiet" id="delete-activity">Delete activity</button><button class="button button-primary" type="submit">Save activity</button></div></form></dialog>
+
+  <dialog id="availability-dialog" class="modal"><form id="availability-form" method="dialog"><div class="modal-top"><div><span class="tiny-eyebrow">MAKE SPACE FOR IT</span><h2>When are you free?</h2></div><button type="button" class="modal-close" data-close>×</button></div><p class="modal-copy">Add the time windows you can use for activities. An end time earlier than a start time means the window runs past midnight.</p><div id="window-list" class="window-list"></div><button type="button" id="add-window" class="button button-outline full-width">＋ Add a free-time window</button><div class="modal-actions"><span class="save-hint">Your windows are saved on this device.</span><button class="button button-primary" type="submit">Save windows</button></div></form></dialog>
+
+  <dialog id="rhythm-dialog" class="modal"><form id="rhythm-form" method="dialog"><div class="modal-top"><div><span class="tiny-eyebrow">A HEALTHIER RHYTHM</span><h2>Protect your energy</h2></div><button type="button" class="modal-close" data-close>×</button></div><p class="modal-copy">We’ll reserve sleep and leisure first, then fit sessions into the remaining free time.</p><div class="field-row"><label>Usual sleep time<input id="sleep-time" type="time"></label><label>Hours of sleep<input id="sleep-hours" type="number" min="6" max="12" step="0.5"></label></div><div class="field-row"><label>Leisure minimum (hours)<input id="leisure-min" type="number" min="0" max="8" step="0.5"></label><label>Leisure target (hours)<input id="leisure-max" type="number" min="0" max="10" step="0.5"></label></div><div class="field-row"><label>Focus session length (min)<input id="pomodoro-focus" type="number" min="15" max="90" step="5"></label><label>Break length (min)<input id="pomodoro-break" type="number" min="0" max="30" step="5"></label></div><div class="modal-actions"><span class="save-hint">We’ll flag a plan if your goals don’t fit.</span><button class="button button-primary" type="submit">Save preferences</button></div></form></dialog>
+  <dialog id="timer-dialog" class="timer-modal"><button type="button" class="modal-close timer-close" data-close>×</button><span class="tiny-eyebrow" id="timer-activity">FOCUS SESSION</span><div class="timer-phase" id="timer-phase">Focus</div><div class="timer-clock" id="timer-clock">40:00</div><div class="timer-progress"><div id="timer-progress-fill"></div></div><p id="timer-caption">One thing at a time. You’ve got this.</p><div class="timer-controls"><button type="button" id="timer-toggle" class="button button-outline">Pause</button><button type="button" id="timer-stop" class="button button-quiet">End session</button></div></dialog>
+  <script src="app.js"></script>
+</body>
+</html>

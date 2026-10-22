@@ -1,0 +1,10 @@
+.timer-modal{border:0;border-radius:18px;padding:35px 30px 27px;width:min(390px,calc(100vw - 28px));text-align:center;box-shadow:0 20px 70px #25223d38;color:var(--ink)}
+.timer-modal::backdrop{background:#24233380;backdrop-filter:blur(3px)}
+.timer-close{position:absolute;right:15px;top:15px}
+.timer-phase{font:700 14px Manrope;color:#6c61bd;margin-top:19px}
+.timer-clock{font:700 66px Manrope;letter-spacing:-3px;color:#282a3a;margin:9px 0 16px;font-variant-numeric:tabular-nums}
+.timer-progress{height:6px;background:#efedf8;border-radius:10px;overflow:hidden}
+.timer-progress>div{height:100%;width:0;background:#8376e0;border-radius:10px;transition:width .5s}
+.timer-modal>p{font-size:11px;color:#999aa4;margin:16px 0 23px}
+.timer-controls{display:flex;justify-content:center;gap:8px}
+.timer-controls .button{min-width:100px}
