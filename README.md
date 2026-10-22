@@ -2,16 +2,6 @@
 
 A private, single-device day planner. It runs as a static website and stores its settings and plan in this browser's local storage.
 
-## Run it
-
-Open `index.html` in a modern browser. If your browser restricts local storage for `file://` pages, run a local static server from this directory, for example:
-
-```sh
-python3 -m http.server 8000
-```
-
-Then visit `http://localhost:8000`.
-
 ## How planning works
 
 - Add/edit activity types, session length ranges, and daily minimum/maximum counts.
